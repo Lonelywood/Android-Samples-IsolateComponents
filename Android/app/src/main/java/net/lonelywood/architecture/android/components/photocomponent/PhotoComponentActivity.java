@@ -50,7 +50,7 @@ public class PhotoComponentActivity extends AppCompatActivity {
             }
         } else if (resultCode == RESULT_OK){
             for (PhotoComponentListener listener: listeners){
-                listener.onPhotoTaken(new PhotoTakenArgs(true, "file:" + _fileName));
+                listener.onPhotoTaken(new PhotoTakenArgs(true, _fileName));
             }
         }
 
