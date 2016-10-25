@@ -6,26 +6,30 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import net.lonelywood.architecture.android.components.photocomponent.IPhotoComponent;
-import net.lonelywood.architecture.android.components.photocomponent.PhotoComponent;
+import net.lonelywood.architecture.android.components.photocomponent.DefaultPhotoTakerComponent;
 import net.lonelywood.architecture.android.components.photocomponent.PhotoComponentListener;
-import net.lonelywood.architecture.android.components.photocomponent.PhotoTakenArgs;
+import net.lonelywood.architecture.android.components.photocomponent.PhotoTakerComponent;
 
-public class MainActivity extends AppCompatActivity implements PhotoComponentListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements PhotoComponentListener {
 
-    private IPhotoComponent _photoComponent;
-    private Button _photoButton;
+    private PhotoTakerComponent mPhotoTakerComponent;
+    private Button mPhotoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        _photoComponent = new PhotoComponent();
-        _photoComponent.addListener(this);
+        mPhotoTakerComponent = new DefaultPhotoTakerComponent();
+        mPhotoTakerComponent.addListener(this);
 
-        _photoButton = (Button) findViewById(R.id.main_photo_button);
-        _photoButton.setOnClickListener(this);
+        mPhotoButton = (Button) findViewById(R.id.main_photo_button);
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPhotoTakerComponent.takePhoto();
+            }
+        });
     }
 
     @Override
@@ -34,12 +38,13 @@ public class MainActivity extends AppCompatActivity implements PhotoComponentLis
     }
 
     @Override
-    public void onPhotoTaken(PhotoTakenArgs args) {
-        Log.e("onPhotoTaken", "success: " + args.getSuccess() + ", path: " + args.getPath());
+    public void onPhotoTaken(Boolean success, String path) {
+        Log.e("onPhotoTaken", "success: " + success + ", path: " + path);
     }
 
     @Override
-    public void onClick(View v) {
-        _photoComponent.takePhoto();
+    protected void onDestroy() {
+        mPhotoTakerComponent.removeListener(this);
+        super.onDestroy();
     }
 }

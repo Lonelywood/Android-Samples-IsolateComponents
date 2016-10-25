@@ -1,5 +1,5 @@
 package net.lonelywood.architecture.android.components.photocomponent;
 
 public interface PhotoComponentListener {
-    void onPhotoTaken(PhotoTakenArgs args);
+    void onPhotoTaken(Boolean success, String path);
 }
