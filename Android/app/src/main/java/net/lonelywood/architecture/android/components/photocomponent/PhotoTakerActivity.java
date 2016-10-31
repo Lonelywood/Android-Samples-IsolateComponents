@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoComponentActivity extends AppCompatActivity {
+public class PhotoTakerActivity extends AppCompatActivity {
 
     public static final String ExtraFileName = "fileName";
 
-    private static List<PhotoComponentListener> listeners = new ArrayList<>();
+    private static List<PhotoTakerListener> listeners = new ArrayList<>();
 
     private String mFileName;
     private final int RequestImageCapture = 1;
@@ -44,11 +44,11 @@ public class PhotoComponentActivity extends AppCompatActivity {
 
         if (requestCode == RequestImageCapture) {
             if (resultCode == RESULT_CANCELED){
-                for (PhotoComponentListener listener: listeners) {
+                for (PhotoTakerListener listener: listeners) {
                     listener.onPhotoTaken(false, null);
                 }
             } else if (resultCode == RESULT_OK){
-                for (PhotoComponentListener listener: listeners){
+                for (PhotoTakerListener listener: listeners){
                     listener.onPhotoTaken(true, mFileName);
                 }
             }
@@ -57,11 +57,11 @@ public class PhotoComponentActivity extends AppCompatActivity {
         finish();
     }
 
-    public static void addListener(PhotoComponentListener listener){
+    public static void addListener(PhotoTakerListener listener){
         listeners.add(listener);
     }
 
-    public static void removeListener(PhotoComponentListener listener) {
+    public static void removeListener(PhotoTakerListener listener) {
         listeners.remove(listener);
     }
 }

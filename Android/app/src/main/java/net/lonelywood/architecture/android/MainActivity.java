@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 import net.lonelywood.architecture.android.components.photocomponent.DefaultPhotoTakerComponent;
-import net.lonelywood.architecture.android.components.photocomponent.PhotoComponentListener;
+import net.lonelywood.architecture.android.components.photocomponent.PhotoTakerListener;
 import net.lonelywood.architecture.android.components.photocomponent.PhotoTakerComponent;
 
-public class MainActivity extends AppCompatActivity implements PhotoComponentListener {
+public class MainActivity extends AppCompatActivity implements PhotoTakerListener {
 
     private PhotoTakerComponent mPhotoTakerComponent;
     private Button mPhotoButton;

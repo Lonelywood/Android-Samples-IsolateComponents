@@ -33,8 +33,8 @@ public class DefaultPhotoTakerComponent implements PhotoTakerComponent {
                 File image = File.createTempFile(name.toString(), ".jpg", folder);
 
                 // Take photo by intent
-                Intent intent = new Intent(mApplicationContext, PhotoComponentActivity.class);
-                intent.putExtra(PhotoComponentActivity.ExtraFileName, Uri.fromFile(image).toString());
+                Intent intent = new Intent(mApplicationContext, PhotoTakerActivity.class);
+                intent.putExtra(PhotoTakerActivity.ExtraFileName, Uri.fromFile(image).toString());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 mApplicationContext.startActivity(intent);
@@ -44,11 +44,11 @@ public class DefaultPhotoTakerComponent implements PhotoTakerComponent {
         }
     }
 
-    public void addListener(PhotoComponentListener listener){
-        PhotoComponentActivity.addListener(listener);
+    public void addListener(PhotoTakerListener listener){
+        PhotoTakerActivity.addListener(listener);
     }
 
-    public void removeListener(PhotoComponentListener listener){
-        PhotoComponentActivity.removeListener(listener);
+    public void removeListener(PhotoTakerListener listener){
+        PhotoTakerActivity.removeListener(listener);
     }
 }
