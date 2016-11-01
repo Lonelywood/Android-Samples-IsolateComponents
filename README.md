@@ -1,5 +1,7 @@
 ﻿## How to isolate component from activity when it needs start the intent for result?
 
+Stackoverflow question: [**Here**](http://stackoverflow.com/questions/40347649/how-to-isolate-component-from-activity-when-it-needs-start-the-intent-for-result)
+
 ### Problem:
 
 I need to create a component whose task will be to provide photo file from camera intent.
